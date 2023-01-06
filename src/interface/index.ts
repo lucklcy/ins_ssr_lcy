@@ -5,3 +5,4 @@ export interface IApiService {
 }
 
 export * from './detail'
+export * from './instragram'

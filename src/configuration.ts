@@ -1,5 +1,6 @@
 import { Configuration, App } from '@midwayjs/decorator'
 import * as koa from '@midwayjs/koa'
+import * as axios from '@midwayjs/axios'
 import { join } from 'path'
 import { initialSSRDevProxy, getCwd } from 'ssr-common-utils'
 
@@ -7,16 +8,14 @@ const koaStatic = require('koa-static-cache')
 const cwd = getCwd()
 
 @Configuration({
-  imports: [
-    koa
-  ],
+  imports: [koa, axios],
   importConfigs: [join(__dirname, './config')]
 })
 export class ContainerLifeCycle {
   @App()
   app: koa.Application
 
-  async onReady () {
+  async onReady() {
     this.app.use(koaStatic(join(cwd, './build')))
     this.app.use(koaStatic(join(cwd, './public')))
     this.app.use(koaStatic(join(cwd, './build/client')))
