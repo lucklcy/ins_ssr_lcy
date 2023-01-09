@@ -14,8 +14,8 @@ export class Instragram {
   instagramService: IInstagramService
 
   @Get('/pageInit')
-  async getPageInitConfig(@Query('insUserName') insUserName: string) {
-    const data = await this.instagramService.pageInit(insUserName)
+  async getPageInitConfig(@Query('bloggers') bloggers: string) {
+    const data = await this.instagramService.pageInit(bloggers)
     return data
   }
 }

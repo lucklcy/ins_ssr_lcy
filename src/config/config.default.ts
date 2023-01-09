@@ -1,5 +1,7 @@
 import { MidwayConfig } from '@midwayjs/core'
-import { cookie } from '../common/const'
+import { INSTAGRAM_COOKIE, PROXY_IP, PROXY_PORT } from '../common/const'
+const HttpsProxyAgent = require('https-proxy-agent')
+const agent = new HttpsProxyAgent(`http://${PROXY_IP}:${PROXY_PORT}`)
 
 export default {
   // use for cookie sign key, should change to your own and keep security
@@ -25,7 +27,9 @@ export default {
         // 自定义实例
         baseURL: 'https://www.instagram.com',
         // `headers` are custom headers to be sent
-        headers: { cookie, accept: '*/*' },
+        headers: { cookie: INSTAGRAM_COOKIE, accept: '*/*' },
+        httpsAgent: agent,
+        httpAgent: agent,
         withCredentials: true // default
       }
     }

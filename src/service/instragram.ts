@@ -9,8 +9,8 @@ export class InstagramService {
   @InjectClient(HttpServiceFactory, 'instagramAxios')
   instagramAxios: HttpService
 
-  async pageInit(insUserName: string): Promise<IUserInitResponse> {
-    const url = `/api/v1/feed/user/${insUserName}/username/?count=12`
+  async pageInit(bloggers: string): Promise<IUserInitResponse> {
+    const url = `/api/v1/feed/user/${bloggers}/username/?count=12`
     return await this.instagramAxios.get(url)
   }
 }
