@@ -15,7 +15,12 @@ export class Instragram {
 
   @Get('/pageInit')
   async getPageInitConfig(@Query('bloggers') bloggers: string) {
-    const data = await this.instagramService.pageInit(bloggers)
+    let data = await this.instagramService.feedInit(bloggers)
+    const { user, next_max_id: maxId } = data
+    const { pk_id: pkId } = user
+    if (maxId) {
+      data = await this.instagramService.getFeedNext(pkId, maxId)
+    }
     return data
   }
 }

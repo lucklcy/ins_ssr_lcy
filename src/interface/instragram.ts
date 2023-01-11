@@ -1,4 +1,5 @@
 import { IUserInitResponse } from '~/typings/data'
 export interface IInstagramService {
-  pageInit: (bloggers: string) => Promise<IUserInitResponse>
+  feedInit: (bloggers: string) => Promise<IUserInitResponse>
+  getFeedNext: (pkId: string, maxId: string) => Promise<IUserInitResponse>
 }
